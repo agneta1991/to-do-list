@@ -1,32 +1,51 @@
 import './style.css';
 
-function component() {
-  const element = document.createElement('ul');
-  const element2 = document.createElement('li');
-  element2.innerHTML = 'Helloooooooo';
-  element.appendChild(element2);
-  console.log(element);
-  document.getElementById('containerDiv').appendChild(element);
+const taskInput = document.getElementById('input');
+const tasks = [];
 
-  return element;
+taskInput.addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    const description = taskInput.value;
+  
+    const newTask = {
+      description: description,
+      completed: false,
+      index: tasks.length + 1,
+    };
+
+    tasks.push(newTask);
+    taskInput.value = '';
+    addTasks();
+
+}})
+
+
+function addTasks() {
+    const taskList = document.getElementById('taskList');
+    taskList.innerHTML = '';
+
+    tasks.forEach((task) => {
+        const listItem = document.createElement('li');
+        listItem.className = 'list';
+
+        const insideList = document.createElement('input');
+        insideList.className = 'listItemsPlaceholder';
+        insideList.value = task.description;
+
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = task.completed;
+
+        if (task.completed) {
+            listItem.classList.add('completed');
+        }
+        
+        listItem.appendChild(checkbox);
+        listItem.appendChild(insideList);
+        taskList.appendChild(listItem);
+    });
 }
 
-component();
 
-const element = document.createElement('ul');
-element.id = 'ul';
-document.getElementById('containerDiv').appendChild(element);
-
-const tasks = [
-  {
-    description: 'task1',
-    completed: false,
-    index: 0,
-  },
-];
-
-for (let i = 0; i < tasks.length; i++) {
-  const li = document.createElement('li');
-  li.innerHTML = tasks[i].description;
-  element.appendChild(li);
-}
+document.addEventListener('DOMContentLoaded', addTasks);

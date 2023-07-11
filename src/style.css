@@ -1,3 +1,41 @@
 body {
-  background-color: lightgray;
+  background-color: white;
+  font-size: 1.2rem;
+}
+
+#container {
+    margin: 5em;
+    border: 1px solid black;
+}
+
+#input {
+    width: 98%;
+    padding: 0;
+    margin: 0;
+    padding: 0.2rem;
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
+.clearBtn {
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+.list {
+    list-style: none;
+    width: auto;
+    border: 0.5px solid lightgray;
+    padding: 0.2rem;
+}
+
+.listItemsPlaceholder {
+    border: none;
+    height: auto;
+    width: 90%;
 }
