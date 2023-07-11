@@ -1,12 +1,21 @@
 import './style.css';
 
+
 function component() {
-    const element = document.createElement('div');
 
-    element.innerHTML = 'Hello', 'webpack';
-    element.classList.add('hello');
 
+    const element = document.createElement('ul');
+    const element2 = document.createElement('li');
+    element2.innerHTML = 'Helloooooooo';
+    element.appendChild(element2);
+    console.log(element);
+    document.getElementById('containerDiv').appendChild(element);
+    
     return element;
 }
 
-document.body.appendChild(component());
+component();
+
+const element = document.createElement('ul');
+element.id='helooyyvhjdbvljafvabjd';
+document.getElementById('containerDiv').appendChild(element);
