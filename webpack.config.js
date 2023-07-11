@@ -4,8 +4,7 @@ const path = require('path');
  module.exports = {
    mode: 'development',
    entry: {
-     index: './src/index.js',
-     print: './src/print.js',
+     index: './src/index.js'
    },
    module: {
     rules: [
@@ -25,11 +24,11 @@ const path = require('path');
      }),
    ],
    output: {
-     filename: '[name].bundle.js',
+     filename: 'index.js',
      path: path.resolve(__dirname, 'dist'),
      clean: true
    },
-  optimization: {
+  /*optimization: {
     runtimeChunk: 'single',
-  },
+  },*/
  };

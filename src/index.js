@@ -1,11 +1,12 @@
-import _ from 'lodash';
 import './style.css';
 
-const listDiv = document.getElementById('toDoContainer');
+function component() {
+    const element = document.createElement('div');
 
+    element.innerHTML = 'Hello', 'webpack';
+    element.classList.add('hello');
 
-const tasks = [{
-    description: '',
-    completed: false,
-    index: 0
-}]
+    return element;
+}
+
+document.body.appendChild(component());
