@@ -2,7 +2,7 @@ import './style.css';
 import addTask from './addtask.js';
 import { saveTasksToStorage, loadTasksFromStorage } from './localstorage.js';
 
-const tasks = loadTasksFromStorage();
+const tasks = [];
 
 const taskList = document.getElementById('taskList');
 const taskInput = document.getElementById('input');
