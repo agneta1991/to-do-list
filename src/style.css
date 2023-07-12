@@ -34,8 +34,7 @@ ul {
     padding: 0.2rem;
 }
 
-.listItemsPlaceholder {
-    border: none;
-    height: auto;
-    width: 90%;
+.completed {
+    text-decoration: line-through;
+    color: grey;
 }

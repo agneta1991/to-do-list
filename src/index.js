@@ -3,22 +3,23 @@ import './style.css';
 const taskInput = document.getElementById('input');
 const tasks = [];
 
-taskInput.addEventListener('keyup', function(event) {
+taskInput.addEventListener('keyup', function (event) {
     if (event.key === 'Enter') {
-      event.preventDefault();
-    const description = taskInput.value;
-  
-    const newTask = {
-      description: description,
-      completed: false,
-      index: tasks.length + 1,
-    };
+        event.preventDefault();
+        const description = taskInput.value;
 
-    tasks.push(newTask);
-    taskInput.value = '';
-    addTasks();
+        const newTask = {
+            description: description,
+            completed: false,
+            index: tasks.length + 1,
+        };
 
-}})
+        tasks.push(newTask);
+        taskInput.value = '';
+        addTasks();
+
+    }
+})
 
 
 function addTasks() {
@@ -29,23 +30,36 @@ function addTasks() {
         const listItem = document.createElement('li');
         listItem.className = 'list';
 
-        const insideList = document.createElement('input');
-        insideList.className = 'listItemsPlaceholder';
-        insideList.value = task.description;
+        const insideList = document.createElement('label');
+        insideList.className = 'listItemsLabel';
+        insideList.for = 'myCheck';
+        insideList.innerHTML = task.description;
 
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
-        checkbox.checked = task.completed;
+        checkbox.className = 'checkboxtick';
+
+
+        checkbox.addEventListener('change', function () {
+            if (checkbox.checked) {
+                insideList.classList.add('completed');
+            } else {
+                insideList.classList.remove('completed');
+            }
+        });
 
         if (task.completed) {
-            listItem.classList.add('completed');
-        }
-        
+            checkbox.checked = true;
+            insideList.classList.add('completed');
+          }
+
         listItem.appendChild(checkbox);
         listItem.appendChild(insideList);
         taskList.appendChild(listItem);
+
     });
 }
+
 
 
 document.addEventListener('DOMContentLoaded', addTasks);
