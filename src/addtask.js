@@ -32,6 +32,10 @@ function addTask(description, taskList) {
 
     parent.replaceChild(inputField, content);
 
+    function deleteTask() {
+      console.log('Trash icon was clicked');
+    }
+
     inputField.addEventListener('blur', () => {
       content.innerHTML = inputField.value;
       parent.replaceChild(content, inputField);
@@ -43,10 +47,6 @@ function addTask(description, taskList) {
 
     icon.removeEventListener('click', editFunction);
     icon.addEventListener('click', deleteTask);
-  }
-
-  function deleteTask(e) {
-    console.log('Trash icon was clicked');
   }
 
   icon.addEventListener('click', editFunction);
