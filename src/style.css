@@ -45,6 +45,16 @@ i {
   box-shadow: 4px 2.5px 10px lightslategray;
 }
 
+input {
+    outline: none;
+    border: none;
+    width: 100%;
+}
+
+.checkboxtick {
+    width: 5%;
+}
+
 #input {
   width: 87%;
   margin: 0;
@@ -88,3 +98,9 @@ p {
   text-decoration: line-through;
   color: grey;
 }
+
+.edit-field {
+    font-size: 1.2rem;
+    color: rgb(99, 97, 97);
+}
+
