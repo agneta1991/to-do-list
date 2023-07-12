@@ -1,8 +1,8 @@
 import './style.css';
 import addTask from './addtask.js';
-import { saveTasksToStorage, loadTasksFromStorage } from './localstorage';
+import { saveTasksToStorage, loadTasksFromStorage } from './localstorage.js';
 
-let tasks = loadTasksFromStorage();
+const tasks = loadTasksFromStorage();
 
 const taskList = document.getElementById('taskList');
 const taskInput = document.getElementById('input');
