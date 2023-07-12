@@ -1,89 +1,90 @@
 body {
-    background: rgb(183,183,181);
-background: linear-gradient(0deg, rgba(183,183,181,1) 0%, rgba(255,255,255,1) 100%);
-    font-size: 1rem;
-    font-family: Arial, Helvetica, sans-serif;
-    height: 100vh;
+  background: rgb(183, 183, 181);
+  background: linear-gradient(0deg, rgba(183, 183, 181, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  font-size: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100vh;
 }
 
 .todaysToDo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: darkslategray;
-    border: 0.5px solid lightgray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: darkslategray;
+  border: 0.5px solid lightgray;
 }
 
 .inputAdd {
-    border: 0.5px solid lightgray;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  border: 0.5px solid lightgray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 h1 {
-    font-weight: 400;
-    margin: 0;
-    padding: 0.8rem;
-    font-size: 1.4rem;
+  font-weight: 400;
+  margin: 0;
+  padding: 0.8rem;
+  font-size: 1.4rem;
 }
 
 i {
-    padding-right: 1rem;
-    color: lightslategray;
+  padding-right: 1rem;
+  color: lightslategray;
 }
 
 .material-symbols-outlined {
-    color: lightslategray;
-    padding-right: 1rem;
-    font-size: 1rem;
+  color: lightslategray;
+  padding-right: 1rem;
+  font-size: 1rem;
 }
 
 #container {
-    background-color: #fff;
-    margin: 5em;
-    box-shadow: 4px 2.5px 10px lightslategray;
+  background-color: #fff;
+  margin: 5em;
+  box-shadow: 4px 2.5px 10px lightslategray;
 }
 
 #input {
-    width: auto;
-    margin: 0;
-    padding: 0.8rem;
-    font-size: 1.2rem;
-    font-style: italic;
-    border: none;
+  width: 87%;
+  margin: 0;
+  padding: 0.8rem;
+  font-size: 1.2rem;
+  font-style: italic;
+  border: none;
+  outline: none;
 }
 
 .clearBtn {
-    width: 100%;
-    font-size: 1.2rem;
-    padding: 1rem;
-    color: lightslategray;
+  width: 100%;
+  font-size: 1.2rem;
+  padding: 1rem;
+  color: lightslategray;
 }
 
 ul {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .list {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    list-style: none;
-    width: auto;
-    border: 0.5px solid lightgray;
-    padding: 0.8rem;
-    padding-right: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style: none;
+  width: auto;
+  border: 0.5px solid lightgray;
+  padding: 0.8rem;
+  padding-right: 0;
 }
 
 p {
-    margin: 0;
-    padding-left: 0.8rem;
-    width: 85%;
+  margin: 0;
+  padding-left: 0.8rem;
+  width: 85%;
 }
 
 .completed {
-    text-decoration: line-through;
-    color: grey;
+  text-decoration: line-through;
+  color: grey;
 }
