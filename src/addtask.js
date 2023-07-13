@@ -1,7 +1,33 @@
-import { loadTasksFromStorage } from "./localstorage.js";
-import { saveTasksToStorage } from "./localstorage.js";
+import { loadTasksFromStorage, saveTasksToStorage } from './localstorage.js';
 
-function addTask(task, taskList) {
+function updateLocalStorage() {
+  const taskListItems = Array.from(document.querySelectorAll('ul#taskList li'));
+  const storedTasks = loadTasksFromStorage();
+
+  const updatedTasks = taskListItems.map((li, index) => {
+    const content = li.querySelector('.content');
+
+    if (content && storedTasks[index]) { storedTasks[index].description = content.innerHTML; }
+
+    return {
+      description: content ? content.innerHTML : '',
+      completed: storedTasks[index] ? storedTasks[index].completed : false,
+      index: index + 1,
+    };
+  });
+
+  storedTasks.splice(updatedTasks.length);
+
+  updatedTasks.forEach((task, index) => {
+    if (!storedTasks[index]) {
+      storedTasks.push(task);
+    }
+  });
+
+  saveTasksToStorage(storedTasks);
+}
+
+function addTask(task, taskList, tasks) {
   const listItem = document.createElement('li');
   listItem.className = 'list';
   taskList.appendChild(listItem);
@@ -37,13 +63,22 @@ function addTask(task, taskList) {
 
     parent.replaceChild(inputField, content);
 
-    function deleteTask() {
+    function updateTaskIndices(tasks) {
+      tasks.forEach((task, index) => {
+        task.index = index + 1;
+      });
+    }
+
+    function deleteTask(tasks) {
       const listItem = this.parentNode;
       const taskList = listItem.parentNode;
       const taskIndex = Array.from(taskList.children).indexOf(listItem);
       taskList.removeChild(listItem);
-      
-      updateLocalStorage();
+
+      tasks.splice(taskIndex, 1);
+
+      updateTaskIndices(tasks);
+      updateLocalStorage(tasks);
     }
 
     inputField.addEventListener('blur', () => {
@@ -57,42 +92,15 @@ function addTask(task, taskList) {
     });
 
     icon.removeEventListener('click', editFunction);
-    icon.addEventListener('click', deleteTask);
+
+    icon.addEventListener('click', () => {
+      deleteTask.call(icon, tasks);
+    });
+
     updateLocalStorage();
   }
 
   icon.addEventListener('click', editFunction);
 }
-
-function updateLocalStorage() {
-  const taskListItems = Array.from(document.querySelectorAll('ul#taskList li'));
-  const storedTasks = loadTasksFromStorage();
-
-  const updatedTasks = taskListItems.map((li, index) => {
-    const content = li.querySelector('.content');
-    
-    if (content && storedTasks[index]) 
-      storedTasks[index].description = content.innerHTML;
-
-    return {
-      description: content ? content.innerHTML : '',
-      completed: storedTasks[index] ? storedTasks[index].completed : false,
-      index: index + 1,
-    };
-  });
-
-  // Remove deleted tasks
-  storedTasks.splice(updatedTasks.length);
-
-  // Add new tasks
-  updatedTasks.forEach((task, index) => {
-    if (!storedTasks[index]) {
-      storedTasks.push(task);
-    }
-  });
-
-  saveTasksToStorage(storedTasks);
-}
-
 
 export default addTask;

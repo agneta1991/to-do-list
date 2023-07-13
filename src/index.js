@@ -2,7 +2,7 @@ import './style.css';
 import addTask from './addtask.js';
 import { saveTasksToStorage, loadTasksFromStorage } from './localstorage.js';
 
-const tasks = [];
+let tasks = loadTasksFromStorage();
 
 const taskList = document.getElementById('taskList');
 const taskInput = document.getElementById('input');
@@ -10,7 +10,7 @@ const taskInput = document.getElementById('input');
 function addTasks() {
   taskList.innerHTML = '';
   tasks.forEach((task) => {
-    addTask(task.description, taskList);
+    addTask(task, taskList, tasks);
   });
 }
 
@@ -28,7 +28,7 @@ taskInput.addEventListener('keyup', (event) => {
 
       tasks.push(newTask);
       taskInput.value = '';
-      addTask(newTask, taskList);
+      addTask(newTask, taskList, tasks);
 
       saveTasksToStorage(tasks);
     }
@@ -36,5 +36,6 @@ taskInput.addEventListener('keyup', (event) => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+  tasks = loadTasksFromStorage();
   addTasks();
 });
