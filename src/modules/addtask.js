@@ -1,43 +1,24 @@
-import { completingTask } from './completingTask.js';
-import { loadTasksFromStorage, saveTasksToStorage } from './localstorage.js';
+import { completionFunction } from './completingTask.js'
 
-function updateLocalStorage() {
-  const taskListItems = Array.from(document.querySelectorAll('ul#taskList li'));
-  const storedTasks = loadTasksFromStorage();
-
-  const updatedTasks = taskListItems.map((li, index) => {
-    const content = li.querySelector('.content');
-
-    if (content && storedTasks[index]) { storedTasks[index].description = content.innerHTML; }
-
-    return {
-      description: content ? content.innerHTML : '',
-      completed: storedTasks[index] ? storedTasks[index].completed : false,
-      index: index + 1,
-    };
-  });
-
-  storedTasks.splice(updatedTasks.length);
-
-  updatedTasks.forEach((task, index) => {
-    if (!storedTasks[index]) {
-      storedTasks.push(task);
-    }
-  });
-
-  saveTasksToStorage(storedTasks);
+function updateLocalStorage(tasks){
+  localStorage.clear();
+  window.localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 function addTask(task, taskList, tasks) {
   const listItem = document.createElement('li');
+  listItem.style.textDecoration = task.completed ? 'line-through' : 'none';
   listItem.className = 'list';
   taskList.appendChild(listItem);
 
   const checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
   checkbox.className = 'checkboxtick';
-  
-  checkbox.addEventListener('click', () => completingTask(checkbox, task));
+  checkbox.checked = task.completed;
+  checkbox.addEventListener('change', (event) => {
+    task = returnTask(tasks, event);
+    completionFunction(event, tasks, task);
+  });
   listItem.appendChild(checkbox);
 
   const p = document.createElement('p');
@@ -84,14 +65,16 @@ function addTask(task, taskList, tasks) {
       updateLocalStorage(tasks);
     }
 
-    inputField.addEventListener('blur', () => {
+    inputField.addEventListener('blur', (event) => {
+      task = returnTask(tasks, event);
+      task.description = inputField.value;
       content.innerHTML = inputField.value;
       parent.replaceChild(content, inputField);
       parent.style.backgroundColor = 'white';
       icon.className = 'fa-solid fa-ellipsis-vertical';
       icon.removeEventListener('click', deleteTask);
       icon.addEventListener('click', editFunction);
-      updateLocalStorage();
+      updateLocalStorage(tasks);
     });
 
     icon.removeEventListener('click', editFunction);
@@ -100,10 +83,19 @@ function addTask(task, taskList, tasks) {
       deleteTask.call(icon, tasks);
     });
 
-    updateLocalStorage();
+    updateLocalStorage(tasks);
   }
 
   icon.addEventListener('click', editFunction);
 }
 
+function returnTask(tasks, event){
+  const listItem = event.target.parentNode;
+  const taskList = listItem.parentNode;
+  const taskIndex = Array.from(taskList.children).indexOf(listItem);
+
+return tasks[taskIndex];
+}
+
+export {returnTask, updateLocalStorage};
 export default addTask;

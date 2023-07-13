@@ -1,6 +1,6 @@
 import './style.css';
 import addTask from './modules/addtask.js';
-import { saveTasksToStorage, loadTasksFromStorage } from './modules/localstorage.js'
+import { saveTasksToStorage, loadTasksFromStorage } from './modules/localstorage.js';
 
 let tasks = loadTasksFromStorage();
 

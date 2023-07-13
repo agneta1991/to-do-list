@@ -1,15 +1,16 @@
-function completingTask(checkbox, task) {
-    if (checkbox.checked) {
-      checkbox.parentNode.classList.add('completed');
+import { updateLocalStorage } from './addtask.js';
+
+function completionFunction(checkbox, tasks, task){
+   
+    task.completed = !task.completed;
+    if (task.completed){
+        checkbox.target.parentElement.style.textDecoration = 'line-through';
     } else {
-      checkbox.parentNode.classList.remove('completed');
+        checkbox.target.parentElement.style.textDecoration = 'none';
     }
-  
-    if (task.completed) {
-      checkbox.checked = true;
-      checkbox.parentNode.classList.add('completed');
-    }
-  }
-  
-  export { completingTask };
+    updateLocalStorage(tasks);
+}
+
+export { completionFunction };
+
   
