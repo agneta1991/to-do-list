@@ -28,7 +28,7 @@ taskInput.addEventListener('keyup', (event) => {
 
       tasks.push(newTask);
       taskInput.value = '';
-      addTask(description, taskList);
+      addTask(newTask, taskList);
 
       saveTasksToStorage(tasks);
     }
