@@ -1,41 +1,41 @@
 import './style.css';
+import addTask from './addtask.js';
+import { saveTasksToStorage, loadTasksFromStorage } from './localstorage.js';
 
-const tasks = [
-  {
-    description: 'task1',
-    completed: false,
-    index: 0,
-  },
-  {
-    description: 'task2',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'task3',
-    completed: false,
-    index: 2,
-  },
-];
+let tasks = loadTasksFromStorage();
 
 const taskList = document.getElementById('taskList');
+const taskInput = document.getElementById('input');
 
-tasks.forEach((task) => {
-  const listItem = document.createElement('li');
-  listItem.className = 'list';
-  taskList.appendChild(listItem);
+function addTasks() {
+  taskList.innerHTML = '';
+  tasks.forEach((task) => {
+    addTask(task, taskList, tasks);
+  });
+}
 
-  const checkbox = document.createElement('input');
-  checkbox.type = 'checkbox';
-  checkbox.className = 'checkboxtick';
-  listItem.appendChild(checkbox);
+taskInput.addEventListener('keyup', (event) => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    const description = taskInput.value.trim();
 
-  const p = document.createElement('p');
-  p.innerHTML = task.description;
+    if (description !== '') {
+      const newTask = {
+        description,
+        completed: false,
+        index: tasks.length + 1,
+      };
 
-  listItem.appendChild(p);
+      tasks.push(newTask);
+      taskInput.value = '';
+      addTask(newTask, taskList, tasks);
 
-  const icon = document.createElement('i');
-  icon.className = 'fa-solid fa-ellipsis-vertical';
-  listItem.appendChild(icon);
+      saveTasksToStorage(tasks);
+    }
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  tasks = loadTasksFromStorage();
+  addTasks();
 });
