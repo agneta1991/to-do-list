@@ -1,3 +1,4 @@
+import { completingTask } from './completingTask.js';
 import { loadTasksFromStorage, saveTasksToStorage } from './localstorage.js';
 
 function updateLocalStorage() {
@@ -35,6 +36,8 @@ function addTask(task, taskList, tasks) {
   const checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
   checkbox.className = 'checkboxtick';
+  
+  checkbox.addEventListener('click', () => completingTask(checkbox, task));
   listItem.appendChild(checkbox);
 
   const p = document.createElement('p');
