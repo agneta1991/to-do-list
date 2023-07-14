@@ -45,7 +45,6 @@ btn.addEventListener('click', clearFunction);
 function clearFunction() {
   const individualTasks = tasks.filter(task => task.completed === true);
   const indexes = individualTasks.map(task => task.index);
-debugger
   indexes.reverse().forEach(indexToDelete => {
     tasks.splice(indexToDelete, 1);
   });
@@ -53,6 +52,7 @@ debugger
   updateTaskIndices(tasks);
   updateLocalStorage(tasks);
   console.log(tasks);
+  location.reload();
 }
 
 

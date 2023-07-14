@@ -12,21 +12,6 @@ function completionFunction(checkbox, tasks, task){
     updateLocalStorage(tasks);
 }
 
-function clearFunction(tasks){
-    console.log(tasks);
-}
 
-export { completionFunction, /*clearFunction*/ };
+export { completionFunction };
 
-
-// const clearAllTasks = () => {
-//     tasks = tasks.filter((task) => !task.completed);
-//     tasks.forEach((task, i) => {
-//       task.index = i + 1;
-//     });
-//     renderTasks();
-//   };
-
-//   clearAll.addEventListener('click', clearAllTasks);
-
-//   getData();
