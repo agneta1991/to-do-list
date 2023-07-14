@@ -13,6 +13,7 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
+    - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
@@ -50,6 +51,11 @@ This To-Do-List project is a simple HTML list of To Do tasks. A simple web page 
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🚀 Live Demo & Video presentation <a name="live-demo"></a> <a name='video'></a>
+<br>
+
+- [Click me to view deployed project!]([https://agneta1991.github.io/to-do-list/dist])
 
 
 ## 💻 Getting Started <a name="getting-started"></a>
