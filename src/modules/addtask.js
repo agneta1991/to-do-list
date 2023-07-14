@@ -1,6 +1,14 @@
-import { completionFunction } from './completingTask.js'
+import completionFunction from './completingTask.js';
 
-function updateLocalStorage(tasks){
+function returnTask(tasks, event) {
+  const listItem = event.target.parentNode;
+  const taskList = listItem.parentNode;
+  const taskIndex = Array.from(taskList.children).indexOf(listItem);
+
+  return tasks[taskIndex];
+}
+
+function updateLocalStorage(tasks) {
   localStorage.clear();
   window.localStorage.setItem('tasks', JSON.stringify(tasks));
 }
@@ -11,10 +19,14 @@ function updateTaskIndices(tasks) {
   });
 }
 
+let taskIdCounter = 0;
+
 function addTask(task, taskList, tasks) {
   const listItem = document.createElement('li');
   listItem.style.textDecoration = task.completed ? 'line-through' : 'none';
   listItem.className = 'list';
+  listItem.id = `task-${taskIdCounter}`;
+  taskIdCounter++;
   taskList.appendChild(listItem);
 
   const checkbox = document.createElement('input');
@@ -54,7 +66,6 @@ function addTask(task, taskList, tasks) {
     parent.replaceChild(inputField, content);
     updateTaskIndices(tasks);
 
-
     function deleteTask(tasks) {
       const listItem = this.parentNode;
       const taskList = listItem.parentNode;
@@ -91,13 +102,5 @@ function addTask(task, taskList, tasks) {
   icon.addEventListener('click', editFunction);
 }
 
-function returnTask(tasks, event){
-  const listItem = event.target.parentNode;
-  const taskList = listItem.parentNode;
-  const taskIndex = Array.from(taskList.children).indexOf(listItem);
-
-return tasks[taskIndex];
-}
-
-export {returnTask, updateLocalStorage, updateTaskIndices};
+export { returnTask, updateLocalStorage, updateTaskIndices };
 export default addTask;
