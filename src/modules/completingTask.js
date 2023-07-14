@@ -1,4 +1,4 @@
-import { updateLocalStorage } from './addtask.js';
+import { updateLocalStorage } from './localstorage.js';
 
 function completionFunction(checkbox, tasks, task) {
   task.completed = !task.completed;

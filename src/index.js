@@ -1,12 +1,29 @@
 import './style.css';
 import addTask, { updateTaskIndices, updateLocalStorage } from './modules/addtask.js';
 import { saveTasksToStorage, loadTasksFromStorage } from './modules/localstorage.js';
-/* import { clearFunction } from './modules/completingTask.js'; */
 
 let tasks = loadTasksFromStorage();
 
 const taskList = document.getElementById('taskList');
 const taskInput = document.getElementById('input');
+
+function clearFunction() {
+  const individualTasks = tasks.filter((task) => task.completed === true);
+  const indexes = individualTasks.map((task) => task.index);
+  indexes.reverse().forEach((indexToDelete) => {
+    tasks.splice(indexToDelete, 1);
+  });
+
+  updateTaskIndices(tasks);
+  updateLocalStorage(tasks);
+
+  individualTasks.forEach((task) => {
+    const taskElement = document.getElementById(`task-${task.index}`);
+    if (taskElement) {
+      taskElement.remove();
+    }
+  });
+}
 
 function addTasks() {
   taskList.innerHTML = '';
@@ -38,24 +55,6 @@ taskInput.addEventListener('keyup', (event) => {
 
 const btn = document.getElementById('clearBtn');
 btn.addEventListener('click', clearFunction);
-
-function clearFunction() {
-  const individualTasks = tasks.filter((task) => task.completed === true);
-  const indexes = individualTasks.map((task) => task.index);
-  indexes.reverse().forEach((indexToDelete) => {
-    tasks.splice(indexToDelete, 1);
-  });
-
-  updateTaskIndices(tasks);
-  updateLocalStorage(tasks);
-
-  individualTasks.forEach((task) => {
-    const taskElement = document.getElementById(`task-${task.index}`);
-    if (taskElement) {
-      taskElement.remove();
-    }
-  });
-}
 
 document.addEventListener('DOMContentLoaded', () => {
   tasks = loadTasksFromStorage();

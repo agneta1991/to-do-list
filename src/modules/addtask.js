@@ -1,4 +1,5 @@
 import completionFunction from './completingTask.js';
+import { updateLocalStorage } from './localstorage.js';
 
 function returnTask(tasks, event) {
   const listItem = event.target.parentNode;
@@ -6,11 +7,6 @@ function returnTask(tasks, event) {
   const taskIndex = Array.from(taskList.children).indexOf(listItem);
 
   return tasks[taskIndex];
-}
-
-function updateLocalStorage(tasks) {
-  localStorage.clear();
-  window.localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 function updateTaskIndices(tasks) {
@@ -26,7 +22,7 @@ function addTask(task, taskList, tasks) {
   listItem.style.textDecoration = task.completed ? 'line-through' : 'none';
   listItem.className = 'list';
   listItem.id = `task-${taskIdCounter}`;
-  taskIdCounter++;
+  taskIdCounter += 1;
   taskList.appendChild(listItem);
 
   const checkbox = document.createElement('input');

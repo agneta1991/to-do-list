@@ -7,4 +7,9 @@ const loadTasksFromStorage = () => {
   return storedTasks ? JSON.parse(storedTasks) : [];
 };
 
-export { saveTasksToStorage, loadTasksFromStorage };
+function updateLocalStorage(tasks) {
+  localStorage.clear();
+  window.localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+export { saveTasksToStorage, loadTasksFromStorage, updateLocalStorage };
