@@ -5,6 +5,12 @@ function updateLocalStorage(tasks){
   window.localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
+function updateTaskIndices(tasks) {
+  tasks.forEach((task, index) => {
+    task.index = index;
+  });
+}
+
 function addTask(task, taskList, tasks) {
   const listItem = document.createElement('li');
   listItem.style.textDecoration = task.completed ? 'line-through' : 'none';
@@ -46,12 +52,8 @@ function addTask(task, taskList, tasks) {
     parent.style.backgroundColor = 'lightyellow';
 
     parent.replaceChild(inputField, content);
+    updateTaskIndices(tasks);
 
-    function updateTaskIndices(tasks) {
-      tasks.forEach((task, index) => {
-        task.index = index + 1;
-      });
-    }
 
     function deleteTask(tasks) {
       const listItem = this.parentNode;
@@ -97,5 +99,5 @@ function returnTask(tasks, event){
 return tasks[taskIndex];
 }
 
-export {returnTask, updateLocalStorage};
+export {returnTask, updateLocalStorage, updateTaskIndices};
 export default addTask;
