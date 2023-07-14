@@ -1,40 +1,38 @@
-import { loadTasksFromStorage, saveTasksToStorage } from './localstorage.js';
+import completionFunction from './completingTask.js';
+import { updateLocalStorage } from './localstorage.js';
 
-function updateLocalStorage() {
-  const taskListItems = Array.from(document.querySelectorAll('ul#taskList li'));
-  const storedTasks = loadTasksFromStorage();
+function returnTask(tasks, event) {
+  const listItem = event.target.parentNode;
+  const taskList = listItem.parentNode;
+  const taskIndex = Array.from(taskList.children).indexOf(listItem);
 
-  const updatedTasks = taskListItems.map((li, index) => {
-    const content = li.querySelector('.content');
-
-    if (content && storedTasks[index]) { storedTasks[index].description = content.innerHTML; }
-
-    return {
-      description: content ? content.innerHTML : '',
-      completed: storedTasks[index] ? storedTasks[index].completed : false,
-      index: index + 1,
-    };
-  });
-
-  storedTasks.splice(updatedTasks.length);
-
-  updatedTasks.forEach((task, index) => {
-    if (!storedTasks[index]) {
-      storedTasks.push(task);
-    }
-  });
-
-  saveTasksToStorage(storedTasks);
+  return tasks[taskIndex];
 }
+
+function updateTaskIndices(tasks) {
+  tasks.forEach((task, index) => {
+    task.index = index;
+  });
+}
+
+let taskIdCounter = 0;
 
 function addTask(task, taskList, tasks) {
   const listItem = document.createElement('li');
+  listItem.style.textDecoration = task.completed ? 'line-through' : 'none';
   listItem.className = 'list';
+  listItem.id = `task-${taskIdCounter}`;
+  taskIdCounter += 1;
   taskList.appendChild(listItem);
 
   const checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
   checkbox.className = 'checkboxtick';
+  checkbox.checked = task.completed;
+  checkbox.addEventListener('change', (event) => {
+    task = returnTask(tasks, event);
+    completionFunction(event, tasks, task);
+  });
   listItem.appendChild(checkbox);
 
   const p = document.createElement('p');
@@ -62,12 +60,7 @@ function addTask(task, taskList, tasks) {
     parent.style.backgroundColor = 'lightyellow';
 
     parent.replaceChild(inputField, content);
-
-    function updateTaskIndices(tasks) {
-      tasks.forEach((task, index) => {
-        task.index = index + 1;
-      });
-    }
+    updateTaskIndices(tasks);
 
     function deleteTask(tasks) {
       const listItem = this.parentNode;
@@ -81,14 +74,16 @@ function addTask(task, taskList, tasks) {
       updateLocalStorage(tasks);
     }
 
-    inputField.addEventListener('blur', () => {
+    inputField.addEventListener('blur', (event) => {
+      task = returnTask(tasks, event);
+      task.description = inputField.value;
       content.innerHTML = inputField.value;
       parent.replaceChild(content, inputField);
       parent.style.backgroundColor = 'white';
       icon.className = 'fa-solid fa-ellipsis-vertical';
       icon.removeEventListener('click', deleteTask);
       icon.addEventListener('click', editFunction);
-      updateLocalStorage();
+      updateLocalStorage(tasks);
     });
 
     icon.removeEventListener('click', editFunction);
@@ -97,10 +92,11 @@ function addTask(task, taskList, tasks) {
       deleteTask.call(icon, tasks);
     });
 
-    updateLocalStorage();
+    updateLocalStorage(tasks);
   }
 
   icon.addEventListener('click', editFunction);
 }
 
+export { returnTask, updateLocalStorage, updateTaskIndices };
 export default addTask;
