@@ -55,7 +55,9 @@ This To-Do-List project is a simple HTML list of To Do tasks. A simple web page 
 ## 🚀 Live Demo & Video presentation <a name="live-demo"></a> <a name='video'></a>
 <br>
 
-- [Click me to view deployed project!]([https://agneta1991.github.io/to-do-list/dist])
+- [Click me to view deployed project!](https://agneta1991.github.io/to-do-list/dist/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ## 💻 Getting Started <a name="getting-started"></a>
