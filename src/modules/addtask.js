@@ -15,6 +15,17 @@ function updateTaskIndices(tasks) {
   });
 }
 
+function deleteTask(listItem, tasks) {
+  const taskList = listItem.parentNode;
+  const taskIndex = Array.from(taskList.children).indexOf(listItem);
+  taskList.removeChild(listItem);
+
+  tasks.splice(taskIndex, 1);
+
+  updateTaskIndices(tasks);
+  updateLocalStorage(tasks);
+}
+
 let taskIdCounter = 0;
 
 function addTask(task, taskList, tasks) {
@@ -62,18 +73,6 @@ function addTask(task, taskList, tasks) {
     parent.replaceChild(inputField, content);
     updateTaskIndices(tasks);
 
-    function deleteTask(tasks) {
-      const listItem = this.parentNode;
-      const taskList = listItem.parentNode;
-      const taskIndex = Array.from(taskList.children).indexOf(listItem);
-      taskList.removeChild(listItem);
-
-      tasks.splice(taskIndex, 1);
-
-      updateTaskIndices(tasks);
-      updateLocalStorage(tasks);
-    }
-
     inputField.addEventListener('blur', (event) => {
       task = returnTask(tasks, event);
       task.description = inputField.value;
@@ -89,7 +88,7 @@ function addTask(task, taskList, tasks) {
     icon.removeEventListener('click', editFunction);
 
     icon.addEventListener('click', () => {
-      deleteTask.call(icon, tasks);
+      deleteTask(listItem, tasks);
     });
 
     updateLocalStorage(tasks);
