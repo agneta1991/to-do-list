@@ -1,6 +1,5 @@
-
-const jsdom = require ('jsdom')
-const addTask = require('./addtask')
+const { JSDOM } = require('jsdom');
+const { addTask } = require('./addtask')
 
 
 describe('addTask', () => {

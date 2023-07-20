@@ -88,5 +88,5 @@ function addTask(task, taskList, tasks) {
   icon.addEventListener('click', editFunction);
 }
 
-export { returnTask, updateLocalStorage, updateTaskIndices };
-export default addTask;
+export { addTask, returnTask, updateLocalStorage, updateTaskIndices };
+

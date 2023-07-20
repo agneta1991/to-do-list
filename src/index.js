@@ -1,5 +1,5 @@
 import './style.css';
-import addTask, { updateTaskIndices, updateLocalStorage } from './modules/addtask.js';
+import { addTask, updateTaskIndices, updateLocalStorage } from './modules/addtask.js';
 import { saveTasksToStorage, loadTasksFromStorage } from './modules/localstorage.js';
 
 let tasks = loadTasksFromStorage();
