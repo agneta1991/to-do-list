@@ -1,5 +1,6 @@
 import completionFunction from './completingTask.js';
-import { updateLocalStorage } from './localstorage.js';
+import { updateLocalStorage, updateTaskIndices } from './localstorage.js';
+import deleteTask from './deletetask.js';
 
 function returnTask(tasks, event) {
   const listItem = event.target.parentNode;
@@ -7,23 +8,6 @@ function returnTask(tasks, event) {
   const taskIndex = Array.from(taskList.children).indexOf(listItem);
 
   return tasks[taskIndex];
-}
-
-function updateTaskIndices(tasks) {
-  tasks.forEach((task, index) => {
-    task.index = index;
-  });
-}
-
-function deleteTask(listItem, tasks) {
-  const taskList = listItem.parentNode;
-  const taskIndex = Array.from(taskList.children).indexOf(listItem);
-  taskList.removeChild(listItem);
-
-  tasks.splice(taskIndex, 1);
-
-  updateTaskIndices(tasks);
-  updateLocalStorage(tasks);
 }
 
 let taskIdCounter = 0;
@@ -97,5 +81,6 @@ function addTask(task, taskList, tasks) {
   icon.addEventListener('click', editFunction);
 }
 
-export { returnTask, updateLocalStorage, updateTaskIndices };
-export default addTask;
+export {
+  addTask, returnTask, updateLocalStorage, updateTaskIndices,
+};

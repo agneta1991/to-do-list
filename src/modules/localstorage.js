@@ -12,4 +12,12 @@ function updateLocalStorage(tasks) {
   window.localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-export { saveTasksToStorage, loadTasksFromStorage, updateLocalStorage };
+function updateTaskIndices(tasks) {
+  tasks.forEach((task, index) => {
+    task.index = index;
+  });
+}
+
+export {
+  saveTasksToStorage, loadTasksFromStorage, updateLocalStorage, updateTaskIndices,
+};

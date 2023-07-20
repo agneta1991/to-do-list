@@ -1,6 +1,8 @@
 import './style.css';
-import addTask, { updateTaskIndices, updateLocalStorage } from './modules/addtask.js';
-import { saveTasksToStorage, loadTasksFromStorage } from './modules/localstorage.js';
+import { addTask } from './modules/addtask.js';
+import {
+  updateTaskIndices, updateLocalStorage, saveTasksToStorage, loadTasksFromStorage,
+} from './modules/localstorage.js';
 
 let tasks = loadTasksFromStorage();
 
@@ -13,7 +15,6 @@ function clearFunction() {
   indexes.reverse().forEach((indexToDelete) => {
     tasks.splice(indexToDelete, 1);
   });
-
   updateTaskIndices(tasks);
   updateLocalStorage(tasks);
 
