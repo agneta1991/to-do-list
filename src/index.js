@@ -1,30 +1,12 @@
 import './style.css';
 import { addTask } from './modules/addtask.js';
-import {
-  updateTaskIndices, updateLocalStorage, saveTasksToStorage, loadTasksFromStorage,
-} from './modules/localstorage.js';
+import { saveTasksToStorage, loadTasksFromStorage } from './modules/localstorage.js';
+import clearFunction from './modules/clearfunction.js';
 
 let tasks = loadTasksFromStorage();
 
 const taskList = document.getElementById('taskList');
 const taskInput = document.getElementById('input');
-
-function clearFunction() {
-  const individualTasks = tasks.filter((task) => task.completed === true);
-  const indexes = individualTasks.map((task) => task.index);
-  indexes.reverse().forEach((indexToDelete) => {
-    tasks.splice(indexToDelete, 1);
-  });
-  updateTaskIndices(tasks);
-  updateLocalStorage(tasks);
-
-  individualTasks.forEach((task) => {
-    const taskElement = document.getElementById(`task-${task.index}`);
-    if (taskElement) {
-      taskElement.remove();
-    }
-  });
-}
 
 function addTasks() {
   taskList.innerHTML = '';
@@ -55,7 +37,9 @@ taskInput.addEventListener('keyup', (event) => {
 });
 
 const btn = document.getElementById('clearBtn');
-btn.addEventListener('click', clearFunction);
+btn.addEventListener('click', () => {
+  clearFunction(tasks);
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   tasks = loadTasksFromStorage();
