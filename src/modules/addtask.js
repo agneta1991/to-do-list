@@ -1,5 +1,6 @@
 import completionFunction from './completingTask.js';
 import { updateLocalStorage } from './localstorage.js';
+import deleteTask from './deletetask.js';
 
 function returnTask(tasks, event) {
   const listItem = event.target.parentNode;
@@ -15,16 +16,6 @@ function updateTaskIndices(tasks) {
   });
 }
 
-function deleteTask(listItem, tasks) {
-  const taskList = listItem.parentNode;
-  const taskIndex = Array.from(taskList.children).indexOf(listItem);
-  taskList.removeChild(listItem);
-
-  tasks.splice(taskIndex, 1);
-
-  updateTaskIndices(tasks);
-  updateLocalStorage(tasks);
-}
 
 let taskIdCounter = 0;
 
