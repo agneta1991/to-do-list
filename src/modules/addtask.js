@@ -1,15 +1,7 @@
 import completionFunction from './completingTask.js';
 import { updateLocalStorage, updateTaskIndices } from './localstorage.js';
-import deleteTask from './deletetask.js';
 import editFunction from './edittask.js';
-
-
-function returnTask(tasks, event) {
-  const listItem = event.target.parentNode;
-  const taskList = listItem.parentNode;
-  const taskIndex = Array.from(taskList.children).indexOf(listItem);
-  return tasks[taskIndex];
-}
+import returnTask from './returnTask.js';
 
 let taskIdCounter = 0;
 
@@ -40,7 +32,7 @@ function addTask(task, taskList, tasks) {
   icon.className = 'fa-solid fa-ellipsis-vertical';
   listItem.appendChild(icon);
 
-   icon.addEventListener('click', (e) => {
+  icon.addEventListener('click', (e) => {
     editFunction(icon, e, tasks, listItem);
   });
 }
