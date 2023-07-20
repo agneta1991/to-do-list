@@ -2,43 +2,41 @@ import { updateLocalStorage, updateTaskIndices } from "./localstorage";
 import deleteTask from "./deletetask";
 import { returnTask } from "./addtask";
 
-function editFunction(icon, e, tasks) {
-    icon.className = 'fa-solid fa-trash-can';
-    const clickedBtn = e.target;
-    const parent = clickedBtn.parentNode;
-    const content = parent.querySelector('.content');
+function editFunction(icon, e, tasks, listItem) {
+  const isEditMode = listItem.classList.contains("edit-mode");
+
+  if (!isEditMode) {
+    icon.className = "fa-solid fa-trash-can";
+    listItem.classList.add("edit-mode");
+
+    const content = listItem.querySelector(".content");
 
     if (!content) return;
 
-    const inputField = document.createElement('input');
-    inputField.type = 'text';
+    const inputField = document.createElement("input");
+    inputField.type = "text";
     inputField.value = content.innerHTML;
-    inputField.className = 'edit-field';
-    inputField.style.backgroundColor = 'lightyellow';
-    parent.style.backgroundColor = 'lightyellow';
+    inputField.className = "edit-field";
+    inputField.style.backgroundColor = "lightyellow";
+    listItem.style.backgroundColor = "lightyellow";
 
-    parent.replaceChild(inputField, content);
+    listItem.replaceChild(inputField, content);
     updateTaskIndices(tasks);
 
-    inputField.addEventListener('blur', (event) => {
+    inputField.addEventListener("blur", (event) => {
       let task = returnTask(tasks, event);
       task.description = inputField.value;
       content.innerHTML = inputField.value;
-      parent.replaceChild(content, inputField);
-      parent.style.backgroundColor = 'white';
-      icon.className = 'fa-solid fa-ellipsis-vertical';
-      icon.removeEventListener('click', deleteTask);
-      icon.addEventListener('click', editFunction);
+      listItem.replaceChild(content, inputField);
+      listItem.style.backgroundColor = "white";
+      icon.className = "fa-solid fa-ellipsis-vertical";
       updateLocalStorage(tasks);
+      listItem.classList.remove("edit-mode");
     });
-
-    icon.removeEventListener('click', editFunction);
-
-    icon.addEventListener('click', () => {
-      deleteTask(listItem, tasks);
-    });
-
-    updateLocalStorage(tasks);
+    
+  } else {
+    deleteTask(listItem, tasks);
   }
+}
 
-  export default editFunction;
+export default editFunction;

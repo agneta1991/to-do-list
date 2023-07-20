@@ -40,10 +40,8 @@ function addTask(task, taskList, tasks) {
   icon.className = 'fa-solid fa-ellipsis-vertical';
   listItem.appendChild(icon);
 
-
-
    icon.addEventListener('click', (e) => {
-    editFunction(icon, e, tasks);
+    editFunction(icon, e, tasks, listItem);
   });
 }
 
