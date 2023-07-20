@@ -1,6 +1,5 @@
 const { JSDOM } = require('jsdom');
-const { addTask } = require('./addtask')
-
+const { addTask } = require('./addtask.js');
 
 describe('addTask', () => {
   let taskList;
@@ -30,5 +29,4 @@ describe('addTask', () => {
 
     expect(liElements.length).toBe(1);
   });
-
-})
+});

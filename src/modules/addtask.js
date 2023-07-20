@@ -1,5 +1,5 @@
 import completionFunction from './completingTask.js';
-import { updateLocalStorage } from './localstorage.js';
+import { updateLocalStorage, updateTaskIndices } from './localstorage.js';
 import deleteTask from './deletetask.js';
 
 function returnTask(tasks, event) {
@@ -9,13 +9,6 @@ function returnTask(tasks, event) {
 
   return tasks[taskIndex];
 }
-
-function updateTaskIndices(tasks) {
-  tasks.forEach((task, index) => {
-    task.index = index;
-  });
-}
-
 
 let taskIdCounter = 0;
 
@@ -88,5 +81,6 @@ function addTask(task, taskList, tasks) {
   icon.addEventListener('click', editFunction);
 }
 
-export { addTask, returnTask, updateLocalStorage, updateTaskIndices };
-
+export {
+  addTask, returnTask, updateLocalStorage, updateTaskIndices,
+};
