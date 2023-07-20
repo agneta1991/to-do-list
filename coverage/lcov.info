@@ -1,5 +1,5 @@
 TN:
-SF:src\modules\addtask.js
+SF:src/modules/addtask.js
 FN:5,returnTask
 FN:15,addTask
 FN:27,(anonymous_2)
@@ -78,7 +78,7 @@ BRF:4
 BRH:1
 end_of_record
 TN:
-SF:src\modules\completingTask.js
+SF:src/modules/completingTask.js
 FN:3,completionFunction
 FNF:1
 FNH:0
@@ -96,7 +96,7 @@ BRF:2
 BRH:0
 end_of_record
 TN:
-SF:src\modules\deletetask.js
+SF:src/modules/deletetask.js
 FN:3,deleteTask
 FNF:1
 FNH:1
@@ -113,7 +113,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:src\modules\localstorage.js
+SF:src/modules/localstorage.js
 FN:1,(anonymous_0)
 FN:5,(anonymous_1)
 FN:10,updateLocalStorage

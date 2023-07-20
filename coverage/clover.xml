@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1689844042729" clover="3.2.0">
-  <project timestamp="1689844042729" name="All files">
+<coverage generated="1689846621175" clover="3.2.0">
+  <project timestamp="1689846621175" name="All files">
     <metrics statements="74" coveredstatements="29" conditionals="8" coveredconditionals="1" methods="13" coveredmethods="2" elements="95" coveredelements="32" complexity="0" loc="74" ncloc="74" packages="1" files="4" classes="4"/>
-    <file name="addtask.js" path="C:\Users\kathy\OneDrive\Desktop\microverse\MOdule_2\wk2Pairprogramming\to-do-list\src\modules\addtask.js">
+    <file name="addtask.js" path="/home/agneta/Desktop/microverse/to-do/to-do-list/src/modules/addtask.js">
       <metrics statements="54" coveredstatements="21" conditionals="4" coveredconditionals="1" methods="6" coveredmethods="1"/>
       <line num="6" count="0" type="stmt"/>
       <line num="7" count="0" type="stmt"/>
@@ -59,7 +59,7 @@
       <line num="78" count="0" type="stmt"/>
       <line num="81" count="1" type="stmt"/>
     </file>
-    <file name="completingTask.js" path="C:\Users\kathy\OneDrive\Desktop\microverse\MOdule_2\wk2Pairprogramming\to-do-list\src\modules\completingTask.js">
+    <file name="completingTask.js" path="/home/agneta/Desktop/microverse/to-do/to-do-list/src/modules/completingTask.js">
       <metrics statements="5" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <line num="4" count="0" type="stmt"/>
       <line num="5" count="0" type="cond" truecount="0" falsecount="2"/>
@@ -67,7 +67,7 @@
       <line num="8" count="0" type="stmt"/>
       <line num="10" count="0" type="stmt"/>
     </file>
-    <file name="deletetask.js" path="C:\Users\kathy\OneDrive\Desktop\microverse\MOdule_2\wk2Pairprogramming\to-do-list\src\modules\deletetask.js">
+    <file name="deletetask.js" path="/home/agneta/Desktop/microverse/to-do/to-do-list/src/modules/deletetask.js">
       <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <line num="4" count="1" type="stmt"/>
       <line num="5" count="1" type="stmt"/>
@@ -76,7 +76,7 @@
       <line num="10" count="1" type="stmt"/>
       <line num="11" count="1" type="stmt"/>
     </file>
-    <file name="localstorage.js" path="C:\Users\kathy\OneDrive\Desktop\microverse\MOdule_2\wk2Pairprogramming\to-do-list\src\modules\localstorage.js">
+    <file name="localstorage.js" path="/home/agneta/Desktop/microverse/to-do/to-do-list/src/modules/localstorage.js">
       <metrics statements="9" coveredstatements="2" conditionals="2" coveredconditionals="0" methods="5" coveredmethods="0"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="0" type="stmt"/>
