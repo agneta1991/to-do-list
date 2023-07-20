@@ -1,9 +1,7 @@
 import './style.css';
 import { addTask } from './modules/addtask.js';
-import {
-  updateTaskIndices, updateLocalStorage, saveTasksToStorage, loadTasksFromStorage,
-} from './modules/localstorage.js';
-import clearFunction from './modules/clearfunction';
+import { saveTasksToStorage, loadTasksFromStorage } from './modules/localstorage.js';
+import clearFunction from './modules/clearfunction.js';
 
 let tasks = loadTasksFromStorage();
 
@@ -39,9 +37,9 @@ taskInput.addEventListener('keyup', (event) => {
 });
 
 const btn = document.getElementById('clearBtn');
-btn.addEventListener('click', (e) => {
-  clearFunction(tasks)});
-
+btn.addEventListener('click', () => {
+  clearFunction(tasks);
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   tasks = loadTasksFromStorage();
