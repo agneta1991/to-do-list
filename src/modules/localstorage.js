@@ -13,11 +13,13 @@ function updateLocalStorage(tasks) {
 }
 
 function updateTaskIndices(tasks) {
+  tasks = loadTasksFromStorage();
   tasks.forEach((task, index) => {
     task.index = index;
   });
 }
 
 export {
-  saveTasksToStorage, loadTasksFromStorage, updateLocalStorage, updateTaskIndices,
+  saveTasksToStorage, loadTasksFromStorage, updateLocalStorage, updateTaskIndices
 };
+

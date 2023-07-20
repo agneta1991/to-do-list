@@ -1,12 +1,13 @@
 import completionFunction from './completingTask.js';
 import { updateLocalStorage, updateTaskIndices } from './localstorage.js';
 import deleteTask from './deletetask.js';
+import editFunction from './edittask.js';
+
 
 function returnTask(tasks, event) {
   const listItem = event.target.parentNode;
   const taskList = listItem.parentNode;
   const taskIndex = Array.from(taskList.children).indexOf(listItem);
-
   return tasks[taskIndex];
 }
 
@@ -39,46 +40,11 @@ function addTask(task, taskList, tasks) {
   icon.className = 'fa-solid fa-ellipsis-vertical';
   listItem.appendChild(icon);
 
-  function editFunction(e) {
-    icon.className = 'fa-solid fa-trash-can';
-    const clickedBtn = e.target;
-    const parent = clickedBtn.parentNode;
-    const content = parent.querySelector('.content');
 
-    if (!content) return;
 
-    const inputField = document.createElement('input');
-    inputField.type = 'text';
-    inputField.value = content.innerHTML;
-    inputField.className = 'edit-field';
-    inputField.style.backgroundColor = 'lightyellow';
-    parent.style.backgroundColor = 'lightyellow';
-
-    parent.replaceChild(inputField, content);
-    updateTaskIndices(tasks);
-
-    inputField.addEventListener('blur', (event) => {
-      task = returnTask(tasks, event);
-      task.description = inputField.value;
-      content.innerHTML = inputField.value;
-      parent.replaceChild(content, inputField);
-      parent.style.backgroundColor = 'white';
-      icon.className = 'fa-solid fa-ellipsis-vertical';
-      icon.removeEventListener('click', deleteTask);
-      icon.addEventListener('click', editFunction);
-      updateLocalStorage(tasks);
-    });
-
-    icon.removeEventListener('click', editFunction);
-
-    icon.addEventListener('click', () => {
-      deleteTask(listItem, tasks);
-    });
-
-    updateLocalStorage(tasks);
-  }
-
-  icon.addEventListener('click', editFunction);
+   icon.addEventListener('click', (e) => {
+    editFunction(icon, e, tasks);
+  });
 }
 
 export {

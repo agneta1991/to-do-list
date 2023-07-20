@@ -3,6 +3,7 @@ import { addTask } from './modules/addtask.js';
 import {
   updateTaskIndices, updateLocalStorage, saveTasksToStorage, loadTasksFromStorage,
 } from './modules/localstorage.js';
+import editFunction from './modules/edittask';
 
 let tasks = loadTasksFromStorage();
 
